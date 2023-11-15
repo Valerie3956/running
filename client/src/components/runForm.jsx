@@ -93,13 +93,14 @@ function handleSubmit(e){
                 type = "text"
                 placeholder = "HH:MM:SS"
                 name = "time"
-                pattern="[0-9]{1}:[0-9]{2}:[0-9]{2}|[0-9]{2}:[0-9]{2}"
+                pattern="[0-9]{1}:[0-9]{2}:[0-9]{2}|[0-9]{2}:[0-9]{2}|[0-9]{1}:[0-9]{2}"
                 onChange = {handleChange}
                 value = {inputs.time}
                 ></input>
                 <label htmlFor = "pace" >Pace</label>
                 <input 
                 type = "text"
+                readOnly = "true"
                 placeholder = "pace"
                 name = "pace"
                 onChange = {handleChange}

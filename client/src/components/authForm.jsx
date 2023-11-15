@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons'
 
 export default function AuthForm(props){
 
@@ -13,6 +15,8 @@ export default function AuthForm(props){
         } 
       } = props
 
+      const [showPassword, setShowPassword] = useState(false)
+
     return(
         <form onSubmit={handleSubmit} className = "form">
         <input 
@@ -22,11 +26,17 @@ export default function AuthForm(props){
           onChange={handleChange} 
           placeholder="Username"/>
         <input 
-          type="text" 
+          type={showPassword? "text" : "password"}
           value={password} 
           name="password" 
           onChange={handleChange} 
-          placeholder="Password"/>
+          placeholder="Password"
+          />
+          {showPassword?
+            <FontAwesomeIcon icon={faEye} onClick = {() => setShowPassword(prevShowPassword => !prevShowPassword)}/> 
+            : 
+            <FontAwesomeIcon icon={faEyeSlash} onClick = {() => setShowPassword(prevShowPassword => !prevShowPassword)}/>
+          }
         <button className = "button">{ btnText }</button>
         <p>{errMsg}</p>
       </form>
