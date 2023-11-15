@@ -17,7 +17,7 @@ export default function RunForm(props){
 
     function handleChange(e) {
         const { name, value } = e.target
-        paceCalculator(inputs.distance, inputs.time)
+        // paceCalculator(inputs.distance, inputs.time)
         setInputs(prevInputs => ({
             ...prevInputs,
             [name]: value
@@ -25,6 +25,10 @@ export default function RunForm(props){
     }
 
 //calculate pace
+
+useEffect(() => {
+    paceCalculator(inputs.distance, inputs.time)
+}, [inputs.time, inputs.distance])
 
 function paceCalculator(distance, time){
     const dist = distance
