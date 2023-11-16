@@ -159,8 +159,8 @@ export default function UserProvider(props) {
                     return run
                 } else if (run._id === runId) {
                     return {
-                        ...run,
-                        ...res.data
+                        
+                        ...res.data.editedRun
                     }
                 }
             }
