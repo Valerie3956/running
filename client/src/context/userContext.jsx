@@ -153,14 +153,14 @@ export default function UserProvider(props) {
     function editRun(inputs, runId) {
 
         userAxios.put(`api/run/${runId}`, inputs)
-            .then(setUserRuns(prevUserRuns => prevUserRuns.map(run => {
+            .then(res => setUserRuns(prevUserRuns => prevUserRuns.map(run => {
 
                 if (run._id !== runId) {
                     return run
                 } else if (run._id === runId) {
                     return {
                         ...run,
-                        inputs
+                        ...res.data
                     }
                 }
             }
