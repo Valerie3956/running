@@ -43,7 +43,10 @@ function paceCalculator(distance, time){
         const pace = timeInMinutes / dist
         const paceMinutes = Math.floor(pace)
         const paceSeconds = String(Math.floor(pace - paceMinutes) * 60).padStart(2, '0')
-        const formattedPace = `${paceMinutes}:${paceSeconds} minutes per mile`
+        const formattedPace = 
+        isNaN(paceMinutes) || isNaN(paceSeconds)
+        ? "minutes per mile"
+        : `${paceMinutes}:${paceSeconds} minutes per mile`;
     
         setInputs(prevInputs => ({
             ...prevInputs,
@@ -55,9 +58,12 @@ function paceCalculator(distance, time){
         const seconds = parseInt(splitTime[1])
         const timeInMinutes = minutes + seconds / 60
         const pace = timeInMinutes / dist
-        const paceMinutes = Math.floor(pace)
+        const paceMinutes = String(Math.floor(pace))
         const paceSeconds = String(Math.floor(pace - paceMinutes) * 60).padStart(2, '0')
-        const formattedPace = `${paceMinutes}:${paceSeconds} minutes per mile`
+        const formattedPace = 
+        isNaN(paceMinutes) || isNaN(paceSeconds)
+        ? "minutes per mile"
+        : `${paceMinutes}:${paceSeconds} minutes per mile`;
     
         setInputs(prevInputs => ({
             ...prevInputs,
