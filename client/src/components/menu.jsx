@@ -8,12 +8,13 @@ export default function Menu() {
     const { logout, user: { username, totalMiles } } = useContext(UserContext)
     const [toggle, setToggle] = useState(false)
 
+    const displayName = username.split("@")[0]
 
     return (
         <>
             <div className="menu">
                 <div className="name">
-                    <h1>{username}</h1>
+                    <h1>{displayName}</h1>
                     <h4>{totalMiles.toFixed(1)} miles ran to date</h4>
                 </div>
                 <h2 className="menuToggle" onClick={() => setToggle(prevToggle => !prevToggle)}>Menu</h2>

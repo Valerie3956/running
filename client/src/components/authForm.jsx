@@ -22,7 +22,7 @@ export default function AuthForm(props){
         <input 
           type="text" 
           value={username} 
-          name="username" 
+          name="username (This will be visible by all users of the app!)" 
           onChange={handleChange} 
           placeholder="Username"/>
         <input 
