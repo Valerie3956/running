@@ -17,7 +17,7 @@ const lastRuns = runs.filter(run => run.lastRun)
 
 const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Date(a.lastRun.date))
 
-const displayName = run.lastRun.username.split("@")[0]
+// const displayName = run.lastRun.username.split("@")[0]
 
     return (
         <div className="main">
@@ -25,7 +25,7 @@ const displayName = run.lastRun.username.split("@")[0]
             {sortedLastRuns.map(run => 
 
             <div key = {run.lastRun._id}>
-                <h1 className = "nameSocial">{displayName}</h1>
+                <h1 className = "nameSocial">{run.lastRun.username.split("@")[0]}</h1>
                 <Run 
                 date = {run.lastRun.date}
                 _id = {run.lastRun._id}

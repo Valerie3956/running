@@ -40,6 +40,18 @@ runRouter.get("/user", async(req, res, next) => {
         }
 })
 
+//get all users
+
+// runRouter.get("user/getAll", (req, res, next) => {
+//   User.find((err, users) => {
+//     if(err){
+//       res.status(500)
+//       return next(err)
+//     }
+//     return res.status(200).send(users)
+//   })
+// })
+
 //add new run
 
 runRouter.post("/", async(req, res, next) => {

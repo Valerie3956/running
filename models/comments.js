@@ -17,12 +17,18 @@ const commentSchema = new Schema ({
         ref: "User",
         required: true
     },
+    userName:
+    {
+        type: String,
+        required: true
+    },
     run:
     {
         type: Schema.Types.ObjectId,
         ref: "Issue",
         required: true
-    }
+    },
+
 })
 
 

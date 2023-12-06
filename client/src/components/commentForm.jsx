@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../context/userContext'
 
 
 export default function CommentForm(props){
@@ -8,10 +9,14 @@ const {
      btnText, toggle, submit, commentId, initContent } = props
 
 const initInputs = {
-     content: initContent || ""
+     content: initContent || "",
+     userName: initContent || ""
   }
 
   const [inputs, setInputs] = useState(initInputs)
+
+  const { user: {username}} = useContext(UserContext)
+
 
     //function for the comment form
 
@@ -19,6 +24,7 @@ const initInputs = {
         const {name, value} = e.target
         setInputs(prevInputs => ({
             ...prevInputs,
+            userName : username,
           [name]: value
         }))
       }
@@ -26,7 +32,7 @@ const initInputs = {
 
       function handleSubmit(e){
         submit(inputs, commentId)
-        setInputs({content : ""})
+        setInputs({content : "", userName : ""})
     
       }
 
