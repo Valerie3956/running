@@ -17,11 +17,6 @@ const lastRuns = runs.filter(run => run.lastRun)
 
 const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Date(a.lastRun.date))
 
-if (run.lastRun.username.includes("@")) {
-    const displayName = run.lastRun.username.split("@")[0]
-} else {
-    const displayName = run.lastRun.userName
-}
 
     return (
         <div className="main">
@@ -29,7 +24,7 @@ if (run.lastRun.username.includes("@")) {
             {sortedLastRuns.map(run => 
 
             <div key = {run.lastRun._id}>
-                <h1 className = "nameSocial">{displayName}</h1>
+                <h1 className = "nameSocial">{run.lastRun.username}</h1>
                 <Run 
                 date = {run.lastRun.date}
                 _id = {run.lastRun._id}
