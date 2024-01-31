@@ -12,8 +12,8 @@ useEffect (() => {
     getAllRuns()
 }, [])
 
-
-const lastRuns = runs.filter(run => run.lastRun)
+console.log(runs)
+const lastRuns = runs.filter(run => run.lastRun && run.lastRun._id && run.lastRun.date)
 
 const sortedLastRuns = lastRuns.sort((a, b) => new Date(b.lastRun.date) - new Date(a.lastRun.date))
 

@@ -110,7 +110,7 @@ function handleSubmit(e){
                 <label htmlFor = "pace" >Pace</label>
                 <input 
                 type = "text"
-                readOnly = "true"
+                readOnly = {true}
                 placeholder = "pace"
                 name = "pace"
                 onChange = {handleChange}

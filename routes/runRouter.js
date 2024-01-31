@@ -109,8 +109,9 @@ runRouter.put("/star/:runId", (req, res, next) => {
       { _id: req.params.runId },
       {
         $addToSet: { starUsers: req.auth._id },
-        $pull: { medalUsers: req.auth._id },
-        $pull: { runningstarUsers: req.auth._id }
+        $pull: { medalUsers: req.auth._id,
+          runningstarUsers: req.auth._id
+         }
       },
       { new: true },
       (err, updatedRun) => {
@@ -128,8 +129,9 @@ runRouter.put("/star/:runId", (req, res, next) => {
       { _id: req.params.runId },
       {
         $addToSet: { runningstarUsers: req.auth._id },
-        $pull: { medalUsers: req.auth._id },
-        $pull: { starUsers: req.auth._id }
+        $pull: { medalUsers: req.auth._id,
+        starUsers: req.auth._id 
+      }
       },
       { new: true },
       (err, updatedRun) => {
@@ -147,8 +149,9 @@ runRouter.put("/star/:runId", (req, res, next) => {
       { _id: req.params.runId },
       {
         $addToSet: { medalUsers: req.auth._id },
-        $pull: { starUsers: req.auth._id },
-        $pull: { runningstarUsers: req.auth._id }
+        $pull: { starUsers: req.auth._id,
+          runningstarUsers: req.auth._id
+         },
       },
       { new: true },
       (err, updatedRun) => {
