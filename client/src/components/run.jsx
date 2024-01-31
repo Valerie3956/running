@@ -67,7 +67,8 @@ const [runComments, setRunComments] = useState([])
               initDistance={distance}
               initTime={time}
               initPace={pace}
-              initDate={date} />
+              initDate={date}
+              message = {"edited"} />
             <button onClick={() => setToggle(prevToggle => !prevToggle)} className="smallButton">Close</button>
             <button className="smallButton" onClick={() => deleteRun(run._id)}>Delete Run</button>
           </>

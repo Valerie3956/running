@@ -12,6 +12,7 @@ const {addRun} = useContext(UserContext)
         <div className = "main">
         <RunForm btnText = "Log Run"
         submit = {addRun}
+        message = {"logged"}
         />
         </div>
     )
