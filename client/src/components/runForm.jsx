@@ -11,7 +11,7 @@ export default function RunForm(props){
 
     const [inputs, setInputs] = useState(initInputs)
 
-    const {btnText, submit, runId} = props
+    const {btnText, submit, runId, message} = props
 
 //handle change
 
@@ -77,6 +77,7 @@ function handleSubmit(e){
     e.preventDefault()
     submit(inputs, runId)
     setInputs(initInputs)
+    alert (`successfully ${message} your run!`)
   }
 
     return(
