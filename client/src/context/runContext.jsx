@@ -26,18 +26,28 @@ function getAllRuns(){
 
 function addStar(runId){
     runAxios.put(`api/run/star/${runId}`)
-.then(res => setRuns(prevRuns => {
+.then(res => {
+    console.log('addStar response:', res.data); // Log the response data
+    setRuns(prevRuns => {
     const updatedRuns = prevRuns.map(run => {
-        if (run.lastRun._id === runId){
+        if (run.lastRun?._id === runId){
             return {
                 ...run,
-                lastRun : res.data
+                lastRun : {
+                    ...run.lastRun,
+                    starUsers: res.data.starUsers,
+                    runningstarUsers: res.data.runningstarUsers,
+                    medalUsers: res.data.medalUsers
+                }
             }
         }
         return run
     })
+    console.log(updatedRuns)
     return updatedRuns
-}))
+})
+}
+)
         .catch(err => console.log(err.response.data.errMsg))
 }
 
@@ -45,10 +55,15 @@ function addRunnerDude(runId){
     runAxios.put(`api/run/runnerDude/${runId}`)
 .then(res => setRuns(prevRuns => {
     const updatedRuns = prevRuns.map(run => {
-        if (run.lastRun._id === runId){
+        if (run.lastRun?._id === runId){
             return {
                 ...run,
-                lastRun : res.data
+                lastRun : {
+                    ...run.lastRun,
+                    starUsers: res.data.starUsers,
+                    runningstarUsers: res.data.runningstarUsers,
+                    medalUsers: res.data.medalUsers
+                }
             }
         }
         return run
@@ -62,14 +77,20 @@ function addMedal(runId){
     runAxios.put(`api/run/medal/${runId}`)
 .then(res => setRuns(prevRuns => {
     const updatedRuns = prevRuns.map(run => {
-        if (run.lastRun._id === runId){
+        if (run.lastRun?._id === runId){
             return {
                 ...run,
-                lastRun : res.data
+                lastRun : {
+                    ...run.lastRun,
+                    starUsers: res.data.starUsers,
+                    runningstarUsers: res.data.runningstarUsers,
+                    medalUsers: res.data.medalUsers
+                }
             }
         }
         return run
     })
+    console.log(updatedRuns)
     return updatedRuns
 }))
         .catch(err => console.log(err.response.data.errMsg))
