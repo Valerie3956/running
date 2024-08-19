@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
+const URL = import.meta.env.VITE_API_URL
 
 export const RunContext = React.createContext()
 
@@ -17,7 +18,7 @@ runAxios.interceptors.request.use(config => {
 const [runs, setRuns] = useState([])
     
 function getAllRuns(){
-    runAxios.get("api/run/getAll")
+    runAxios.get(`${URL}/run/api/run/getAll`)
     .then(res => setRuns(res.data))
     .catch(err => console.log(err.response.data.errMsg))
 }
@@ -25,7 +26,7 @@ function getAllRuns(){
 //reactions
 
 function addStar(runId){
-    runAxios.put(`api/run/star/${runId}`)
+    runAxios.put(`${URL}/run/api/run/star/${runId}`)
 .then(res => {
     console.log('addStar response:', res.data); // Log the response data
     setRuns(prevRuns => {
@@ -52,7 +53,7 @@ function addStar(runId){
 }
 
 function addRunnerDude(runId){
-    runAxios.put(`api/run/runnerDude/${runId}`)
+    runAxios.put(`${URL}/run/api/run/runnerDude/${runId}`)
 .then(res => setRuns(prevRuns => {
     const updatedRuns = prevRuns.map(run => {
         if (run.lastRun?._id === runId){
@@ -74,7 +75,7 @@ function addRunnerDude(runId){
 }
 
 function addMedal(runId){
-    runAxios.put(`api/run/medal/${runId}`)
+    runAxios.put(`${URL}/run/api/run/medal/${runId}`)
 .then(res => setRuns(prevRuns => {
     const updatedRuns = prevRuns.map(run => {
         if (run.lastRun?._id === runId){

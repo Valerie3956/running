@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
+const URL = import.meta.env.VITE_API_URL
+
 
 export const UserContext = React.createContext()
 
@@ -25,7 +27,7 @@ export default function UserProvider(props) {
     // log user runs at initial render
 
     useEffect(() => {
-        userAxios.get("/api/run/user")
+        userAxios.get(`${URL}/run/api/run/user`)
             .then(res => setUserRuns(res.data))
             .catch(err => console.log(err.response.data.errMsg))
     }, [])
@@ -33,7 +35,7 @@ export default function UserProvider(props) {
     //signup
 
     function signup(credentials) {
-        axios.post("/auth/signup", credentials)
+        axios.post(`${URL}/run/api/auth/signup`, credentials)
             .then(res => {
                 const { user, token } = res.data
                 localStorage.setItem("token", token)
@@ -51,7 +53,7 @@ export default function UserProvider(props) {
 
     async function login(credentials) {
         try {
-            const loginResponse = await axios.post("/auth/login", credentials)
+            const loginResponse = await axios.post(`${URL}/run/api/auth/login`, credentials)
             const { user, token } = loginResponse.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
@@ -61,7 +63,7 @@ export default function UserProvider(props) {
                 token
             }))
 
-            const userRunResponse = await userAxios.get("/api/run/user")
+            const userRunResponse = await userAxios.get(`${URL}/run/api/run/user`)
             setUserRuns(userRunResponse.data)
         }
 
@@ -106,7 +108,7 @@ export default function UserProvider(props) {
     async function addRun(newRun) {
         try {
             //add run to DB
-            const runResponse = await userAxios.post("api/run", newRun)
+            const runResponse = await userAxios.post(`${URL}/run/api/run`, newRun)
             
             //updates userState
             setUserState(prevUserState => ({
@@ -117,7 +119,7 @@ export default function UserProvider(props) {
                 }
             }))
             //update user runs in state
-            const userRunResponse = await userAxios.get("/api/run/user")
+            const userRunResponse = await userAxios.get(`${URL}/run/api/run/user`)
             setUserRuns(userRunResponse.data)
         } catch (err) {
             console.log(err)
@@ -130,7 +132,7 @@ export default function UserProvider(props) {
     async function deleteRun(runId) {
         try {
             //add run to DB
-            const runResponse = await userAxios.delete(`/api/run/${runId}`)
+            const runResponse = await userAxios.delete(`${URL}/run/api/run/${runId}`)
             
             //updates userState
             setUserState(prevUserState => ({
@@ -152,7 +154,7 @@ export default function UserProvider(props) {
     //edit run
     function editRun(inputs, runId) {
 
-        userAxios.put(`api/run/${runId}`, inputs)
+        userAxios.put(`${URL}/run/api/run/${runId}`, inputs)
             .then(res => setUserRuns(prevUserRuns => prevUserRuns.map(run => {
 
                 if (run._id !== runId) {
