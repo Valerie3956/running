@@ -37,6 +37,7 @@ export default function UserProvider(props) {
     function signup(credentials) {
         axios.post(`${URL}/run/api/auth/signup`, credentials)
             .then(res => {
+                console.log(res.data)
                 const { user, token } = res.data
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
@@ -54,6 +55,7 @@ export default function UserProvider(props) {
     async function login(credentials) {
         try {
             const loginResponse = await axios.post(`${URL}/run/api/auth/login`, credentials)
+            console.log(loginResponse.data)
             const { user, token } = loginResponse.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
