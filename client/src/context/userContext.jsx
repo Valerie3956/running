@@ -56,7 +56,7 @@ export default function UserProvider(props) {
         try {
             const loginResponse = await axios.post(`${URL}/run/api/auth/login`, credentials)
             console.log(credentials)
-            console.log(loginResponse.data)
+            console.log(loginResponse)
             const { user, token } = loginResponse.data
             localStorage.setItem("token", token)
             localStorage.setItem("user", JSON.stringify(user))
